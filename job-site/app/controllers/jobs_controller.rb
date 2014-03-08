@@ -5,9 +5,14 @@ class JobsController < ApplicationController
 	def index
 		# Search form. 
 	end
+
 	def search
 		@jobs = JSON.parse(open(Rails.root + "public/search.json").read)
 		# JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/search?#{parameterize}").read)
+	end
+
+	def show
+		@job = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/#{params[:id]}").read)
 	end
 
 	private 
