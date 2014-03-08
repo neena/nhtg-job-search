@@ -7,12 +7,12 @@ class JobsController < ApplicationController
 	end
 
 	def search
-		@jobs = JSON.parse(open(Rails.root + "public/search.json").read)
+		@jobs = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/search?#{parameterize}").read)
 		# JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/search?#{parameterize}").read)
 	end
 
 	def show
-		@job = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/#{params[:id]}").read)
+		@job = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/#{params[:id]}?api_key=9ef095b57dc3e3eb7449bfcffbc01b54").read)
 	end
 
 	private 
