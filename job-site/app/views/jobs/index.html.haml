@@ -1,1 +1,10 @@
-%h1 Hello world
+= form_tag(search_jobs_path, method: "get", id: "job-form") do
+	%h1
+		I want 
+		= text_field_tag "type"
+		jobs.
+	%h1
+		I live in
+		= text_field_tag "location"
+		\.
+	= submit_tag "Go!", class: "btn btn-primary btn-lg"
