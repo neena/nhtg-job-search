@@ -1,0 +1,7 @@
+= debug @jobs
+%ul
+	- @jobs.each do |job|
+		%li
+			= job["title"]
+			in
+			= job["location"]
