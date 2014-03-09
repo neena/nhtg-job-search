@@ -34,7 +34,7 @@
               },
           };
           directionsService.route(request, function(response, status) {
-            // console.log(response);
+            console.log(response);
           });
 
 

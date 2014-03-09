@@ -21,7 +21,7 @@ var geolocation = (function() {
 
       ajax: function(url) {
         return $.ajax(url, {
-	        crossDomain:true, 
+	         crossDomain:true, 
 			    dataType: "jsonp", 		     
 		    });
       },
@@ -35,6 +35,7 @@ var geolocation = (function() {
             var getPostcode = self.ajax(url);
             getPostcode.success(function(data) {
               var name = data.result[0].admin_ward;
+              console.log(data);
               promise.resolve(name);
             });
 
