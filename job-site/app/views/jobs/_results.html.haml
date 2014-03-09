@@ -1,0 +1,14 @@
+%h2= "Results for #{location}"
+%ul.jobs-list.lead
+	- jobs.each do |job|
+		%li
+			.pull-right.travel-details
+				10 mins by bus
+			= link_to job_path(job["id"]) do 
+				= job["title"]
+				in
+				= job["location"]
+				= "(#{job["hours"]})" if job["hours"]
+			.salary= job["rawSalary"] || "Salary not specified"
+
+			="£#{job["salaryMinMonthly"]} - £#{job["salaryMaxMonthly"]}" if job["salaryMinYearly"]

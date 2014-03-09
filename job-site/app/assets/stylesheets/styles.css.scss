@@ -8,6 +8,12 @@ body {
 	font-size:100%;
 }
 
+.no-bullets {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
 .font-small {
 	font-size:1.4em;
 	font-weight:400;
@@ -54,4 +60,12 @@ input[type=text] {
 	@extend .font-small;
 	width:100%;
 	padding:1rem;
+}
+
+// Jobs Search Page
+.jobs-list{
+	@extend .no-bullets;
+	li {
+		border-top: 1px gray solid;
+	}
 }

@@ -1,9 +1,5 @@
 %h1 Your search results
-%h2 Your local results
-%ul
-	- @jobs.each do |job|
-		%li
-			= link_to job_path(job["id"]) do 
-				= job["title"]
-				in
-				= job["location"]
+= render "results", jobs: @jobs, location: params["location"]
+
+
+= hidden_field_tag 'search_params', params
