@@ -4,7 +4,7 @@
       ajax: function(url) {
         return $.ajax(url, {
           crossDomain:true, 
-          dataType: "jsonp",         
+          dataType: "json",         
         });
       },
 
@@ -21,6 +21,29 @@
         return promise;
       },
 
+      transit: {
+        distance: function(origin, dest) {
+          var directionsService = new google.maps.DirectionsService();
+
+           var request = {
+              origin:origin,
+              destination:dest,
+              travelMode: google.maps.TravelMode.TRANSIT,
+              transitOptions: {
+                departureTime: new Date(1394441400)
+              },
+          };
+          directionsService.route(request, function(response, status) {
+            // console.log(response);
+          });
+
+
+          var key = "AIzaSyB7pQJntosgECglKdaCS7QxSBdY1a97IVo"; // Google Maps API key
+          
+
+        }
+      }
+
 
 
     };
@@ -28,5 +51,5 @@
 }());
 
 $(function() {
-  duration.getLatLng("s64 0QQ");
+  duration.transit.distance("Sheffield", "Doncaster");
 });  
