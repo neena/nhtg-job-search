@@ -1,4 +1,10 @@
-%h2= "Results for #{location}"
+%h2
+	= form_tag '', :method => :get, :class => 'form-inline' do
+		Results for
+		= select_tag "location", options_for_select(@places.first[1].map{|k| k["name"]}.unshift(params["location"])), :class => "form-control input-lg", :id => "location-select"
+		- params.each do |k, v|
+			= hidden_field_tag k, v unless k == "location" 
+		= submit_tag "Go!", :class => "btn btn-primary btn-lg btn-brand"
 %ul.jobs-list.lead
 	- jobs.each do |job|
 		%li

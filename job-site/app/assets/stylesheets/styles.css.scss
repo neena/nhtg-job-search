@@ -62,6 +62,10 @@ input[type=text] {
 	padding:1rem;
 }
 
+input.btn {
+	margin: 0;
+}
+
 // Jobs Search Page
 .jobs-list{
 	@extend .no-bullets;
