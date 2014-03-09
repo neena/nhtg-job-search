@@ -34,7 +34,7 @@ var geolocation = (function() {
             var url = "http://api.postcodes.io/postcodes/lon/" + pos.lng + "/lat/" + pos.lat;
             var getPostcode = self.ajax(url);
             getPostcode.success(function(data) {
-              var name = data.result[0].admin_ward;
+              var name = data.result[0].admin_district;
               console.log(data);
               promise.resolve(name);
             });
