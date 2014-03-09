@@ -1,4 +1,8 @@
 %h1= @job["title"]
 %h2= @job["location"]
+%h4= @job["rawSalary"]
 
-= @job["description"]
+%p= @job["description"]
+
+- if session[:last_job_page]
+	= link_to "Back to results", session[:last_job_page]
