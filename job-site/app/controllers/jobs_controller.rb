@@ -7,15 +7,16 @@ class JobsController < ApplicationController
 	end
 
 	def search
-		# @jobs = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/search?#{parameterize(params)}").read)
+		
 		get_places_near params["home"]
 
 		params.delete("utf8")
 		params.delete("commit")
 		params["location"] = params["home"] unless params["location"]
 		params["api_key"] = "9ef095b57dc3e3eb7449bfcffbc01b54"
-
-		@jobs = JSON.parse(open(Rails.root+"public/search.json").read)
+		
+		@jobs = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/search?#{parameterize(params)}").read)
+		# @jobs = JSON.parse(open(Rails.root+"public/search.json").read)
 		@jobs.each do |job|
 			correct_salary job
 		end
@@ -29,10 +30,10 @@ class JobsController < ApplicationController
 	end
 
 	def show
-		session[:last_job_page] = request.env['HTTP_REFERER'] || jobs_url
-		@job = JSON.parse(open(Rails.root+"public/search.json").read).first
-		@job["description"] = @job["description"].gsub("\n","<br>").html_safe
-		# JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/#{params[:id]}?api_key=9ef095b57dc3e3eb7449bfcffbc01b54").read)
+		# session[:last_job_page] = request.env['HTTP_REFERER'] || jobs_url
+		# @job = JSON.parse(open(Rails.root+"public/search.json").read).first
+		# @job["description"] = @job["description"].gsub("\n","<br>").html_safe
+		JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/#{params[:id]}?api_key=9ef095b57dc3e3eb7449bfcffbc01b54").read)
 	end
 
 	private 

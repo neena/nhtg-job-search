@@ -67,7 +67,7 @@
         if (home !== null && location !== null) {
            var time = duration.transit.distance(home, location);
            time.then(function(time) {
-            console.log(time);
+            $("#duration").html("<h4>Your commute would take " + time + "</h4>");
            });
         }
       }
