@@ -10,15 +10,15 @@ class JobsController < ApplicationController
 		# @jobs = JSON.parse(open("http://yagajobs.co.uk/api/vacancies.json/search?#{parameterize(params)}").read)
 		@jobs = JSON.parse(open(Rails.root+"public/search.json").read)
 		@jobs.each do |job|
-			if job["salaryMinYearly"].try{ |s| s > 1000}
+			if job["salaryMinYearly"].try{ |s| s > 11000}
 				job["salaryMinMonthly"] = job["salaryMinYearly"] / 12
 				job["salaryMaxMonthly"] = job["salaryMaxYearly"] / 12
 			else
 				job["salaryMinHourly"] = job["salaryMinYearly"]
 				job["salaryMaxHourly"] = job["salaryMaxYearly"]
 				if job["hours"].try{|h| h.downcase.include? "full"}
-					job["salaryMinMonthly"] = job["salaryMinHourly"].to_i*70
-					job["salaryMaxMonthly"] = job["salaryMaxHourly"].to_i*70
+					job["salaryMinMonthly"] = job["salaryMinHourly"].to_i*(37*365/7)/12
+					job["salaryMaxMonthly"] = job["salaryMaxHourly"].to_i*(37*365/7)/12
 				end
 			end
 		end
