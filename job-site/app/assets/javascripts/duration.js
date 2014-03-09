@@ -34,7 +34,17 @@
               },
           };
           directionsService.route(request, function(response, status) {
-            console.log(response);
+            if (response.routes.length > 0) {
+              var arrival_time = new Date(response.routes[0].legs[0].arrival_time.value);
+              var departure_time = new Date(response.routes[0].legs[0].departure_time.value);
+              var dif = (arrival_time.getTime() - departure_time.getTime()) / 1000;
+              
+              var hours = parseInt(dif / 3600 ) % 24;
+              var minutes = parseInt(dif / 60 ) % 60;
+              var seconds = dif % 60;
+
+              var time = (hours !== 0 ? hours + " hours" : "") + " " + (minutes !== 0 ? minutes + " minutes" : "") + " " + (seconds !== 0 ? seconds + " seconds" : "");  
+            }    
           });
 
 
@@ -51,5 +61,5 @@
 }());
 
 $(function() {
-  duration.transit.distance("Sheffield", "Doncaster");
+ var time = duration.transit.distance("Sheffield", "Doncaster");
 });  
