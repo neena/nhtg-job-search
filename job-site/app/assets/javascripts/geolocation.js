@@ -29,7 +29,7 @@ var geolocation = (function() {
       nearPostcode: function(element) {
         var promise = $.Deferred();
         if (this.checkGeolocation()) {	
-  	      var getLocation = self.getLocation();
+  	     var getLocation = self.getLocation();
           getLocation.then(function(pos) {
             var url = "http://api.postcodes.io/postcodes/lon/" + pos.lng + "/lat/" + pos.lat;
             var getPostcode = self.ajax(url);
